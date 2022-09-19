@@ -1,22 +1,25 @@
 """
-Description: A Basic Python Webserver.
+Description: A Basic Python Socket That Prints Data It Recives.
 Date: September 2022
 Author: Aleksa Zatezalo
 """
 
 import socket
 
-HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
-PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
+# Create Socket
+host = socket.gethostname()
+port = 12345
+s = socket.socket()		# TCP socket object
+s.bind((host,port))
+s.listen(5)
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen()
-    conn, addr = s.accept()
-    with conn:
-        print(f"Connected by {addr}")
-        while True:
-            data = conn.recv(1024)
-            if not data:
-                break
-            print(data)
+# Accept Client Connection
+print("Waiting for client...")
+conn,addr = s.accept()	        # Accept connection when client connects
+print("Connected by " + addr[0])
+
+# Print Client Data
+while True:
+	data = conn.recv(1024)	    # Receive client data
+	if  data:
+         print(data.decode('utf-8'))
